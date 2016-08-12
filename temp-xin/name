@@ -1,0 +1,27 @@
+
+
+./core/src/main/scala/kafka/log/FileMessageSet.scala:      channel.read(buffer, position)
+./core/src/main/scala/kafka/log/FileMessageSet.scala:      channel.read(offsetAndSizeBuffer, location)
+./core/src/main/scala/kafka/log/FileMessageSet.scala:      channel.read(crcAndMagicByteBuffer, location + MessageSet.LogOverhead)
+./core/src/main/scala/kafka/log/FileMessageSet.scala:        channel.read(sizeOffsetBuffer, location)
+./core/src/main/scala/kafka/log/FileMessageSet.scala:        channel.read(buffer, location + sizeOffsetLength)
+./core/src/main/scala/kafka/log/FileMessageSet.scala:    channel.read(buffer, relativePosition + this.start)
+
+
+./core/src/main/scala/kafka/message/ByteBufferMessageSet.scala:      written += channel.write(buffer)
+
+////////////////////////////////////////////////////////
+the files that need to modified with MyFileChannel
+clients/src/main/java/org/apache/kafka/common/network/TransportLayer.java
+clients/src/main/java/org/apache/kafka/common/network/PlaintextTransportLayer.java
+
+core/src/main/scala/kafka/message/ByteBufferMessageSet.scala
+core/src/main/scala/kafka/log/FileMessageSet.scala
+
+////////////////////////
+
+d0119b08
+
+
+d0419b08
+d0101b01

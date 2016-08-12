@@ -1,0 +1,33 @@
+
+*** How to compile Kafka from source:
+
+bash-3.2$ ./gradlew jar
+Error: Could not find or load main class org.gradle.wrapper.GradleWrapperMain
+
+Solution:
+First u need to download the gradle package, and then:
+$gradle wrap
+// Some output
+$ gradle clean
+
+lastly repeat the command:
+./gradlew jar
+
+
+***  Run Kafka benchmark
+
+1. bin/zookeeper-server-start.sh config/zookeeper.properties
+2. bin/kafka-server-start.sh config/server.properties
+3. bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+Optional: bin/kafka-topics.sh --list --zookeeper localhost:2181
+
+Test to see if it works:
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
+bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning
+
+bin/kafka-run-class.sh org.apache.kafka.tools.ProducerPerformance --topic ttt --num-records 50000000 --record-size 100 --throughput -1 --producer-props acks=1 bootstrap.servers=localhost:9092 buffer.memory=67108864 batch.size=8196
+
+bin/kafka-run-class.sh kafka.tools.EndToEndLatency localhost:9092 ttt 1000 1 20
+
+
+
